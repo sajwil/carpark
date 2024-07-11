@@ -1,17 +1,23 @@
-﻿using Emprevo.Api.Extensions;
+﻿using Emprevo.Api.Constants;
+using Emprevo.Api.Extensions;
 using Emprevo.Api.Models;
 
 namespace Emprevo.Api.Services.Rates.Calculators
 {
-    public class WeekendtRateCalculator() : IRateCalculator
+    public class WeekendtRateCalculator() : BaseRateCalculator
     {
-        public string Name => "Weekend Rate";
+        public override string Name => RateNameConstants.WeekendRateName;
 
-        public decimal Rate => 10;
+        public override decimal Rate => 10;
 
-        public decimal GetTotalPrice(ParkingPeriod parkingPeriod) => Rate;
+        public override decimal GetTotalPrice(ParkingPeriod parkingPeriod)
+        {
+            var totalDaysBetween = parkingPeriod.EntryDateTime.TotalDaysBetween(parkingPeriod.ExitDateTime);
 
-        public bool IsElligible(ParkingPeriod parkingPeriod)
+            return Rate * totalDaysBetween;
+        }
+
+        public override bool IsElligible(ParkingPeriod parkingPeriod)
         {
             return parkingPeriod.EntryDateTime.IsWeekend() && parkingPeriod.ExitDateTime.IsWeekend();
         }

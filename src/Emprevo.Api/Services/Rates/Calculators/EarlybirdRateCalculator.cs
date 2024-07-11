@@ -1,22 +1,21 @@
-﻿using Emprevo.Api.Extensions;
+﻿using Emprevo.Api.Constants;
+using Emprevo.Api.Extensions;
 using Emprevo.Api.Models;
 
 namespace Emprevo.Api.Services.Rates.Calculators
 {
-    public class EarlybirdRateCalculator() : IRateCalculator
+    public class EarlybirdRateCalculator() : BaseRateCalculator
     {
-        public string Name => "Early Bird";
+        public override string Name => RateNameConstants.EarlybirdRateName;
 
-        public decimal Rate => 13;
+        public override decimal Rate => 13;
 
-        public decimal GetTotalPrice(ParkingPeriod parkingPeriod) => Rate;
-
-        public bool IsElligible(ParkingPeriod parkingPeriod)
+        public override bool IsElligible(ParkingPeriod parkingPeriod)
         {
             return parkingPeriod.EntryDateTime.IsOneDayGapBetween(parkingPeriod.ExitDateTime) &&
                 parkingPeriod.EntryDateTime.IsWeekDay() &&
-                parkingPeriod.EntryDateTime.IsWithinTimeRange(new TimeSpan(6, 0, 0), new TimeSpan(9, 0, 0)) &&
-                parkingPeriod.ExitDateTime.IsWithinTimeRange(new TimeSpan(15, 30, 0), new TimeSpan(23, 30, 0));
+                parkingPeriod.EntryDateTime.IsWithinTimeRange(TimeConstants.SixAm, TimeConstants.NineAm) &&
+                parkingPeriod.ExitDateTime.IsWithinTimeRange(TimeConstants.ThreeThirtyPm, TimeConstants.ElevnThirtyPm);
         }
     }
 }

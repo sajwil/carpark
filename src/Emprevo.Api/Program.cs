@@ -11,7 +11,6 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<ICalculationEngine, CalculationEngine>();
-builder.Services.AddScoped<IRateCalculationStrategy, RateCalculationStrategy>();
 
 builder.Services.AddScoped<IRateCalculator, EarlybirdRateCalculator>();
 builder.Services.AddScoped<IRateCalculator, NightRateCalculator>();

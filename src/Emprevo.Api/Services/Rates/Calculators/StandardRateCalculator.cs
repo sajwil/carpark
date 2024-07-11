@@ -1,15 +1,14 @@
-﻿using Emprevo.Api.Extensions;
+﻿using Emprevo.Api.Constants;
+using Emprevo.Api.Extensions;
 using Emprevo.Api.Models;
 
 namespace Emprevo.Api.Services.Rates.Calculators
 {
-    internal class StandardRateCalculator() : IRateCalculator
+    public class StandardRateCalculator() : BaseRateCalculator
     {
-        public string Name => "Standard Rate";
+        public override string Name => RateNameConstants.StandardRateName;
 
-        public decimal Rate => 6.5m;
-
-        public decimal GetTotalPrice(ParkingPeriod parkingPeriod)
+        public override decimal GetTotalPrice(ParkingPeriod parkingPeriod)
         {
             var totalHoursBetween = parkingPeriod.EntryDateTime.TotalHoursBetween(parkingPeriod.ExitDateTime);
             var totalDaysBetween = parkingPeriod.EntryDateTime.TotalDaysBetween(parkingPeriod.ExitDateTime);
@@ -21,11 +20,6 @@ namespace Emprevo.Api.Services.Rates.Calculators
                 2 => 15,
                 _ => 20 * totalDaysBetween
             };
-        }
-
-        public bool IsElligible(ParkingPeriod parkingPeriod)
-        {
-            throw new NotImplementedException();
         }
     }
 }

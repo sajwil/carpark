@@ -24,19 +24,29 @@
             return dateTime.TimeOfDay <= time;
         }
 
+        public static bool After(this DateTime dateTime, TimeSpan time)
+        {
+            return dateTime.TimeOfDay > time;
+        }
+
         public static int TotalHoursBetween(this DateTime startDateTime, DateTime endDateTime)
         {
-            return (endDateTime - startDateTime).Hours;
+            return (int)endDateTime.Subtract(startDateTime).TotalHours;
         }
 
         public static int TotalDaysBetween(this DateTime startDateTime, DateTime endDateTime)
         {
-            return (endDateTime - startDateTime).Days;
+            return (int)Math.Ceiling((endDateTime - startDateTime).TotalHours / 24);
         }
 
         public static bool IsOneDayGapBetween(this DateTime startDateTime, DateTime endDateTime)
         {
-            return (endDateTime - startDateTime).Days <= 1;
+            return (endDateTime - startDateTime).TotalDays <= 1;
+        }
+
+        public static bool IsFriday(this DateTime dateTime)
+        {
+            return dateTime.DayOfWeek == DayOfWeek.Friday;
         }
     }
 }

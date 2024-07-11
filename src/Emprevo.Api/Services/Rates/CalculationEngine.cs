@@ -1,4 +1,5 @@
 ﻿using Emprevo.Api.Models;
+using Emprevo.Api.Services.Rates.Calculators;
 
 namespace Emprevo.Api.Services.Rates
 {
@@ -9,25 +10,29 @@ namespace Emprevo.Api.Services.Rates
 
     public class CalculationEngine : ICalculationEngine
     {
-        private readonly IRateCalculationStrategy _rateCalculationStrategy;
+        private readonly IEnumerable<IRateCalculator> _rateCalculators;
 
-        public CalculationEngine(IRateCalculationStrategy rateCalculationStrategy)
+        public CalculationEngine()
         {
-            _rateCalculationStrategy = rateCalculationStrategy;
+            _rateCalculators =
+            [
+                new EarlybirdRateCalculator(),
+                new NightRateCalculator(),
+                new WeekendtRateCalculator(),
+                new StandardRateCalculator(),
+            ];
         }
 
         public Result<IRateResult> CalculateRate(ParkingPeriod parkingPeriod)
         {
-            var rateCalculator = _rateCalculationStrategy.GetCalculator(parkingPeriod);
+            var rateCalculator = _rateCalculators.First(rateCalculator => rateCalculator.IsElligible(parkingPeriod));
             var totalPrice = rateCalculator.GetTotalPrice(parkingPeriod);
 
-            var result = new RateResult
+            return new Result<IRateResult>(new RateResult
             {
                 RateName = rateCalculator.Name,
                 TotalPrice = totalPrice,
-            };
-
-            return new Result<IRateResult>(result);
+            });
         }
     }
 }
