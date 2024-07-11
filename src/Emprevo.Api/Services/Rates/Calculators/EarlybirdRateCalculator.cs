@@ -8,7 +8,7 @@ namespace Emprevo.Api.Services.Rates.Calculators
     {
         public override string Name => RateNameConstants.EarlybirdRateName;
 
-        public override decimal Rate => 13;
+        public override decimal Rate => RateConstants.EarlybirdRate;
 
         public override bool IsElligible(ParkingPeriod parkingPeriod)
         {

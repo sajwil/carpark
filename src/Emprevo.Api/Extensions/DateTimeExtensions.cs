@@ -44,9 +44,8 @@
             return (endDateTime - startDateTime).TotalDays <= 1;
         }
 
-        public static bool IsFriday(this DateTime dateTime)
-        {
-            return dateTime.DayOfWeek == DayOfWeek.Friday;
-        }
+        public static bool IsFriday(this DateTime dateTime) => dateTime.DayOfWeek == DayOfWeek.Friday;
+        public static bool IsSaturday(this DateTime dateTime) => dateTime.DayOfWeek == DayOfWeek.Saturday;
+        public static bool IsSunday(this DateTime dateTime) => dateTime.DayOfWeek == DayOfWeek.Sunday;
     }
 }

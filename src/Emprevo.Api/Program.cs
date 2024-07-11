@@ -14,7 +14,7 @@ builder.Services.AddScoped<ICalculationEngine, CalculationEngine>();
 
 builder.Services.AddScoped<IRateCalculator, EarlybirdRateCalculator>();
 builder.Services.AddScoped<IRateCalculator, NightRateCalculator>();
-builder.Services.AddScoped<IRateCalculator, WeekendtRateCalculator>();
+builder.Services.AddScoped<IRateCalculator, WeekendRateCalculator>();
 builder.Services.AddScoped<IRateCalculator, StandardRateCalculator>();
 
 

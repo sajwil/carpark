@@ -18,7 +18,7 @@ namespace Emprevo.Api.Services.Rates
             [
                 new EarlybirdRateCalculator(),
                 new NightRateCalculator(),
-                new WeekendtRateCalculator(),
+                new WeekendRateCalculator(),
                 new StandardRateCalculator(),
             ];
         }

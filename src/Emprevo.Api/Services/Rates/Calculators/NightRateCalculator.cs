@@ -7,7 +7,7 @@ namespace Emprevo.Api.Services.Rates.Calculators
     public class NightRateCalculator() : BaseRateCalculator
     {
         public override string Name => RateNameConstants.NightRateName;
-        public override decimal Rate => 6.5m;
+        public override decimal Rate => RateConstants.NightRate;
 
         public override bool IsElligible(ParkingPeriod parkingPeriod)
         {

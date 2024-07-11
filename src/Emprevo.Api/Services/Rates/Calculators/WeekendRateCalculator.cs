@@ -4,11 +4,11 @@ using Emprevo.Api.Models;
 
 namespace Emprevo.Api.Services.Rates.Calculators
 {
-    public class WeekendtRateCalculator() : BaseRateCalculator
+    public class WeekendRateCalculator() : BaseRateCalculator
     {
         public override string Name => RateNameConstants.WeekendRateName;
 
-        public override decimal Rate => 10;
+        public override decimal Rate => RateConstants.WeekendRate;
 
         public override decimal GetTotalPrice(ParkingPeriod parkingPeriod)
         {

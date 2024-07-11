@@ -15,10 +15,10 @@ namespace Emprevo.Api.Services.Rates.Calculators
 
             return totalHoursBetween switch
             {
-                0 => 5,
-                1 => 10,
-                2 => 15,
-                _ => 20 * totalDaysBetween
+                0 => RateConstants.StandardFirstHourRate,
+                1 => RateConstants.StandardSecondHourRate,
+                2 => RateConstants.StandardThirdHourRate,
+                _ => RateConstants.StandardFlatRate * totalDaysBetween
             };
         }
     }

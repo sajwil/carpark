@@ -192,7 +192,7 @@ namespace Emprevo.Tests
 
         [Theory]
         [InlineData("2024-07-13", "2024-07-13", "00:00", "05:59", 10)]
-        [InlineData("2024-07-12", "2024-07-13", "23:59", "06:01", 10)]
+        [InlineData("2024-07-13", "2024-07-14", "23:59", "06:01", 10)]
         [InlineData("2024-07-13", "2024-07-14", "00:00", "05:59", 20)]
         public void GetCalculator_ShouldApplyWeekendRates(string entryDate, string exitDate, string entryTime, string exitTime, decimal value)
         {
