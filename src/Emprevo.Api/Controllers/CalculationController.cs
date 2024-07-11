@@ -5,30 +5,35 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Emprevo.Api.Controllers
 {
-    [Route("api/[controller]")]
+    [ApiVersion("1.0")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     [ApiController]
-    public class CalculationController : ControllerBase
+    public class CalculationController(ICalculationEngineService calculationEngine, ILogger<CalculationController> logger) : ControllerBase
     {
-        private readonly ICalculationEngine _calculationEngine;
+        private readonly ICalculationEngineService _calculationEngine = calculationEngine;
+        private readonly ILogger<CalculationController> _logger = logger;
 
-        public CalculationController(ICalculationEngine calculationEngine)
-        {
-            _calculationEngine = calculationEngine;
-        }
-
-        // change this
         [HttpPost]
         [ProducesResponseType(typeof(decimal), StatusCodes.Status200OK)]
-        public IActionResult GetRate(string entryDate, string exitDate, string entryTime, string exitTime)
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public IActionResult CalculateRate([FromBody] ParkingPeriod parkingPeriod)
         {
-            var result = _calculationEngine.CalculateRate(new ParkingPeriod(entryDate, exitDate, entryTime, exitTime));
-
-            if (result.Status == ResultCode.Ok)
+            try
             {
+                var result = _calculationEngine.CalculateRate(parkingPeriod);
+
+                if (result.Status != ResultCode.Ok)
+                {
+                    return BadRequest(result.Message);
+                }
+
                 return Ok(result.Data);
             }
-
-            return BadRequest(result.Message);
+            catch (ArgumentException ex)
+            {
+                _logger.LogError(ex, "CalculateRate error.");
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

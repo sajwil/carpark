@@ -4,11 +4,11 @@ using Emprevo.Api.Models;
 
 namespace Emprevo.Api.Services.Rates.Calculators
 {
-    public class StandardRateCalculator() : BaseRateCalculator
+    public class StandardRateCalculator : IRateCalculator
     {
-        public override string Name => RateNameConstants.StandardRateName;
+        public string Name => RateNameConstants.StandardRateName;
 
-        public override decimal GetTotalPrice(ParkingPeriod parkingPeriod)
+        public decimal GetTotalPrice(ParkingPeriod parkingPeriod)
         {
             var totalHoursBetween = parkingPeriod.EntryDateTime.TotalHoursBetween(parkingPeriod.ExitDateTime);
             var totalDaysBetween = parkingPeriod.EntryDateTime.TotalDaysBetween(parkingPeriod.ExitDateTime);
