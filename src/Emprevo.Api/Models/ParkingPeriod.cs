@@ -1,8 +1,12 @@
-﻿namespace Emprevo.Api.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Emprevo.Api.Models
 {
     public class ParkingPeriod
     {
+        [Required]
         public DateTime EntryDateTime { get; }
+        [Required]
         public DateTime ExitDateTime { get; }
 
         public ParkingPeriod(DateTime entryDateTime, DateTime exitDateTime)

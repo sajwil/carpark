@@ -51,10 +51,12 @@ namespace Emprevo.Api.Services.Rates
 
         private static bool IsNightRateCalculation(ParkingPeriod parkingPeriod)
         {
+            var entryDay6PM = parkingPeriod.EntryDateTime.Date.AddHours(18);
+            var nextDay6AM = parkingPeriod.EntryDateTime.Date.AddDays(1).AddHours(6);
+
             return parkingPeriod.EntryDateTime.IsOneDayGapBetween(parkingPeriod.ExitDateTime) &&
                parkingPeriod.EntryDateTime.IsWeekDay() &&
-               parkingPeriod.EntryDateTime.IsWithinTimeRange(TimeConstants.SixPM, TimeConstants.Midnight) &&
-               parkingPeriod.ExitDateTime.Before(TimeConstants.SixAm);
+               parkingPeriod.EntryDateTime.IsWithinGivenRange(parkingPeriod.ExitDateTime, entryDay6PM, nextDay6AM);
         }
 
         private static bool IsWeekendRateCalculation(ParkingPeriod parkingPeriod)
