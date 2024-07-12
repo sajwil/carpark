@@ -5,3 +5,5 @@
 /src/Emprevo.Tests/bin
 /src/Emprevo.Tests/obj
 /.vs
+/src/Emprevo.IntegrationTests/bin
+/src/Emprevo.IntegrationTests/obj
