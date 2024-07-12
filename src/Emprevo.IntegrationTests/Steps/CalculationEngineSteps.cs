@@ -1,4 +1,5 @@
 using Emprevo.IntegrationTests.Models;
+using FluentAssertions;
 using System.Globalization;
 using Xunit.Gherkin.Quick;
 
@@ -34,19 +35,30 @@ namespace Emprevo.IntegrationTests.Steps
         [Then(@"the total parking price should be \$(.*)")]
         public async Task ThenTheTotalParkingPriceShouldBeAsync(decimal expectedPrice)
         {
+            if (!entryDateTime.HasValue)
+            {
+                throw new ArgumentException("entryDateTime has no value");
+            }
+
+            if (!exitDateTime.HasValue)
+            {
+                throw new ArgumentException("exitDateTime has no value");
+            }
+
             result = await GetDataFromApi<CalculationResult>(new Dictionary<string, DateTime>
             {
                 { "entryDateTime", entryDateTime.Value },
                 { "exitDateTime", exitDateTime.Value }
             });
 
-            Assert.Equal(expectedPrice, result.TotalPrice);
+            result.TotalPrice.Should().Be(expectedPrice);
         }
 
         [And(@"the rate applied should be ""(.*)""")]
         public void ThenTheRateAppliedShouldBe(string expectedRate)
         {
-            Assert.Equal(expectedRate, result.RateName);
+            result.Should().NotBeNull();
+            result?.RateName.Should().Be(expectedRate);
         }
     }
 }

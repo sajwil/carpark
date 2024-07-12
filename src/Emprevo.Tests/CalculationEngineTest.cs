@@ -51,8 +51,8 @@ namespace Emprevo.Tests
             var result = calculationEngine.CalculateRate(parkingPeriod);
 
             // Assert
-            result.Data.RateName.Should().Be(RateNameConstants.EarlybirdRateName);
-            result.Data.TotalPrice.Should().Be(13);
+            result.Data?.RateName.Should().Be(RateNameConstants.EarlybirdRateName);
+            result.Data?.TotalPrice.Should().Be(13);
         }
 
         [Fact]
@@ -68,8 +68,8 @@ namespace Emprevo.Tests
             var result = calculationEngine.CalculateRate(parkingPeriod);
 
             // Assert
-            result.Data.RateName.Should().Be(RateNameConstants.EarlybirdRateName);
-            result.Data.TotalPrice.Should().Be(13);
+            result.Data?.RateName.Should().Be(RateNameConstants.EarlybirdRateName);
+            result.Data?.TotalPrice.Should().Be(13);
         }
 
         [Fact]
@@ -85,8 +85,8 @@ namespace Emprevo.Tests
             var result = calculationEngine.CalculateRate(parkingPeriod);
 
             // Assert
-            result.Data.RateName.Should().Be(RateNameConstants.NightRateName);
-            result.Data.TotalPrice.Should().Be(6.5m);
+            result.Data?.RateName.Should().Be(RateNameConstants.NightRateName);
+            result.Data?.TotalPrice.Should().Be(6.5m);
         }
 
         [Fact]
@@ -102,8 +102,8 @@ namespace Emprevo.Tests
             var result = calculationEngine.CalculateRate(parkingPeriod);
 
             // Assert
-            result.Data.RateName.Should().Be(RateNameConstants.WeekendRateName);
-            result.Data.TotalPrice.Should().Be(20);
+            result.Data?.RateName.Should().Be(RateNameConstants.WeekendRateName);
+            result.Data?.TotalPrice.Should().Be(20);
         }
 
         [Fact]
@@ -119,8 +119,8 @@ namespace Emprevo.Tests
             var result = calculationEngine.CalculateRate(parkingPeriod);
 
             // Assert
-            result.Data.RateName.Should().Be(RateNameConstants.StandardRateName);
-            result.Data.TotalPrice.Should().Be(5);
+            result.Data?.RateName.Should().Be(RateNameConstants.StandardRateName);
+            result.Data?.TotalPrice.Should().Be(5);
         }
 
         [Fact]
@@ -136,8 +136,8 @@ namespace Emprevo.Tests
             var result = calculationEngine.CalculateRate(parkingPeriod);
 
             // Assert
-            result.Data.RateName.Should().Be(RateNameConstants.StandardRateName);
-            result.Data.TotalPrice.Should().Be(10);
+            result.Data?.RateName.Should().Be(RateNameConstants.StandardRateName);
+            result.Data?.TotalPrice.Should().Be(10);
         }
 
         [Fact]
@@ -153,8 +153,8 @@ namespace Emprevo.Tests
             var result = calculationEngine.CalculateRate(parkingPeriod);
 
             // Assert
-            result.Data.RateName.Should().Be(RateNameConstants.StandardRateName);
-            result.Data.TotalPrice.Should().Be(15);
+            result.Data?.RateName.Should().Be(RateNameConstants.StandardRateName);
+            result.Data?.TotalPrice.Should().Be(15);
         }
 
         [Fact]
@@ -170,8 +170,8 @@ namespace Emprevo.Tests
             var result = calculationEngine.CalculateRate(parkingPeriod);
 
             // Assert
-            result.Data.RateName.Should().Be(RateNameConstants.StandardRateName);
-            result.Data.TotalPrice.Should().Be(20);
+            result.Data?.RateName.Should().Be(RateNameConstants.StandardRateName);
+            result.Data?.TotalPrice.Should().Be(20);
         }
 
         [Fact]
@@ -187,8 +187,8 @@ namespace Emprevo.Tests
             var result = calculationEngine.CalculateRate(parkingPeriod);
 
             // Assert
-            result.Data.RateName.Should().Be(RateNameConstants.StandardRateName);
-            result.Data.TotalPrice.Should().Be(25);
+            result.Data?.RateName.Should().Be(RateNameConstants.StandardRateName);
+            result.Data?.TotalPrice.Should().Be(25);
         }
 
         [Theory]
@@ -207,8 +207,8 @@ namespace Emprevo.Tests
             var result = calculationEngine.CalculateRate(parkingPeriod);
 
             // Assert
-            result.Data.RateName.Should().Be(RateNameConstants.EarlybirdRateName);
-            result.Data.TotalPrice.Should().Be(value);
+            result.Data?.RateName.Should().Be(RateNameConstants.EarlybirdRateName);
+            result.Data?.TotalPrice.Should().Be(value);
         }
 
         [Theory]
@@ -227,8 +227,8 @@ namespace Emprevo.Tests
             var result = calculationEngine.CalculateRate(parkingPeriod);
 
             // Assert
-            result.Data.RateName.Should().Be(RateNameConstants.NightRateName);
-            result.Data.TotalPrice.Should().Be(value);
+            result.Data?.RateName.Should().Be(RateNameConstants.NightRateName);
+            result.Data?.TotalPrice.Should().Be(value);
         }
 
         [Theory]
@@ -247,8 +247,8 @@ namespace Emprevo.Tests
             var result = calculationEngine.CalculateRate(parkingPeriod);
 
             // Assert
-            result.Data.RateName.Should().Be(RateNameConstants.WeekendRateName);
-            result.Data.TotalPrice.Should().Be(value);
+            result.Data?.RateName.Should().Be(RateNameConstants.WeekendRateName);
+            result.Data?.TotalPrice.Should().Be(value);
         }
 
         [Theory]
@@ -270,8 +270,8 @@ namespace Emprevo.Tests
             var result = calculationEngine.CalculateRate(parkingPeriod);
 
             // Assert
-            result.Data.RateName.Should().Be(RateNameConstants.StandardRateName);
-            result.Data.TotalPrice.Should().Be(value);
+            result.Data?.RateName.Should().Be(RateNameConstants.StandardRateName);
+            result.Data?.TotalPrice.Should().Be(value);
         }
     }
 }

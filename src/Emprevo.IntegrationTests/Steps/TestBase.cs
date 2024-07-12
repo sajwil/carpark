@@ -21,7 +21,7 @@ namespace Emprevo.IntegrationTests.Steps
             };
         }
 
-        public async Task<T> GetDataFromApi<T>(Dictionary<string, DateTime> input) where T : class
+        public async Task<T> GetDataFromApi<T>(Dictionary<string, DateTime> input) where T : new()
         {
             var request = new HttpRequestMessage(HttpMethod.Post, string.Empty);
 
@@ -33,7 +33,7 @@ namespace Emprevo.IntegrationTests.Steps
             var responseBody = await response.Content.ReadAsStringAsync();
 
             var deserializedData = JsonSerializer.Deserialize<T>(responseBody);
-            return deserializedData;
+            return deserializedData ?? new T();
         }
     }
 }
