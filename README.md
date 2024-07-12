@@ -54,7 +54,7 @@ The project includes Gherkin-based test cases executed using xUnit.
 1. Run `Emprevo.Api`
 2. Copy the `URL` and replace it with value in `carpark\src\Emprevo.Api\appsettings.json`    
 3. Run the tests using Test explorer:
-    <img src="docs/Test_Explorer.png"/>
+    ![Test Explorer](docs/Test_Explorer.png)
 4. Or via command line
     ```bash
     dotnet test .\src\Emprevo.IntegrationTests\Emprevo.IntegrationTests.csproj
