@@ -5,7 +5,7 @@ using Xunit.Gherkin.Quick;
 namespace Emprevo.IntegrationTests.Steps
 {
     [FeatureFile("./Features/CalculationEngine.feature")]
-    public sealed class CalculationEngineTest : TestBase
+    public sealed class CalculationEngineSteps : TestBase
     {
         private DateTime? entryDateTime;
         private DateTime? exitDateTime;
